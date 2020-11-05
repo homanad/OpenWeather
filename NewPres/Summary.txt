@@ -1,0 +1,50 @@
+Why do we need Clean Architecture?
+- Why do we need good architecture?
+	+ MVP
+	+ MVP + Repository
+	
+`We should think about our
+applications as group of use cases
+that describe the intent of the
+application and group of plugins
+that give those uses cases access to
+outside word.`
+Uncle Bob`
+
+Why Clean Architecture?
+- Independent of libraries & frameworks
+- Independent of UI
+- Independent of data sources
+
+Dependency rule
+Layers
+Dependency inversion
+Data model
+
+DataLayer - separate data model
+DomainLayer - data model
+PresentationLayer - data model
+
+Data representations
+Mappers
+Implementations
+
+Presenter
+
+Layers-after
+
+Usecase-interactor
+
+Layers-after-after
+
+Repository
+
+Data flow
+
+Modularity
+
+Testing
+
+Pros-cons
+
+References
