@@ -27,13 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         ConnectionManager.checkNetworkConnection(this)
         button.setOnClickListener {
-            if (ConnectionManager.isConnected) {
-                Log.d("aaaa", "data from remote")
-                viewModel.getWeatherFromRemote("Ho Chi Minh City")
-            } else {
-                Log.d("aaaa", "data from local")
-                viewModel.getWeatherFromLocal()
-            }
+            viewModel.getWeather(ConnectionManager.isConnected, "Ho Chi Minh City")
         }
     }
 

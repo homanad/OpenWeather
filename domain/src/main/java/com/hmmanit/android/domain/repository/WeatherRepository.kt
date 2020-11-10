@@ -4,6 +4,5 @@ import com.hmmanit.android.domain.entity.WeatherResponseEntity
 import io.reactivex.Single
 
 interface WeatherRepository {
-    fun getLocalWeather(): Single<WeatherResponseEntity>
-    fun getRemoteWeather(cityName: String): Single<WeatherResponseEntity>
+    fun getWeather(isConnected: Boolean, cityName: String): Single<WeatherResponseEntity>
 }

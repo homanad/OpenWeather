@@ -23,11 +23,4 @@ class LocalWeatherDataSourceImpl(
             dao.insertWeather(WeatherEntityMapper().map(it))
         }
     }
-
-//    fun saveLocalWeather(weatherResponseEntity: WeatherResponseEntity) {
-//        repository.clearAllData()
-//        weatherResponseEntity.weather.map {
-//            repository.insertWeather(weatherData = entityToDataMapper.mapWeatherEntityToData(it))
-//        }
-//    }
 }

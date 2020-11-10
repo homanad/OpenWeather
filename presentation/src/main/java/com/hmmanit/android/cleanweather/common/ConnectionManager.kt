@@ -3,8 +3,6 @@ package com.hmmanit.android.cleanweather.common
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
-import android.net.NetworkInfo
-import android.os.Build
 
 
 object ConnectionManager {
@@ -17,12 +15,12 @@ object ConnectionManager {
 //            val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
 //            isConnected = activeNetwork?.isConnectedOrConnecting == true
 //        } else {
-            registerNetworkCallback(context)
+        registerNetworkCallback(context)
 //        }
     }
 
 
-    private fun registerNetworkCallback(context: Context): Boolean {
+    private fun registerNetworkCallback(context: Context) {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         cm.registerDefaultNetworkCallback(object : ConnectivityManager.NetworkCallback() {
@@ -34,6 +32,5 @@ object ConnectionManager {
                 isConnected = false
             }
         })
-        return isConnected
     }
 }

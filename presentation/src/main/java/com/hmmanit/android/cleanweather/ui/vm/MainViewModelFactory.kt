@@ -10,8 +10,7 @@ class MainViewModelFactory(private val context: Context) : ViewModelProvider.New
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             return MainViewModel(
-                Injector.getGetRemoteWeatherUseCase(context),
-                Injector.getGetLocalWeatherUseCase(context)
+                Injector.getGetWeatherUseCase(context)
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

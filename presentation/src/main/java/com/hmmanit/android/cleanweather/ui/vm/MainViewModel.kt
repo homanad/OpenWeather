@@ -5,20 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import com.hmmanit.android.cleanweather.common.BaseViewModel
 import com.hmmanit.android.cleanweather.mapper.WeatherResponseMapper
 import com.hmmanit.android.cleanweather.model.WeatherResponse
-import com.hmmanit.android.domain.usecase.GetLocalWeatherUseCase
-import com.hmmanit.android.domain.usecase.GetRemoteWeatherUseCase
+import com.hmmanit.android.domain.usecase.GetWeatherParams
+import com.hmmanit.android.domain.usecase.GetWeatherUseCase
 
 class MainViewModel(
-    private val getRemoteWeatherUseCase: GetRemoteWeatherUseCase,
-    private val getLocalWeatherUseCase: GetLocalWeatherUseCase
+    private val getWeatherUseCase: GetWeatherUseCase
 ) : BaseViewModel() {
 
     private val _weatherResponse = MutableLiveData<WeatherResponse>()
     val weatherResponse: LiveData<WeatherResponse> = _weatherResponse
 
-    fun getWeatherFromRemote(cityName: String) {
+    fun getWeather(isNetworkConnected: Boolean, cityName: String) {
         disposables.add(
-            getRemoteWeatherUseCase(cityName)
+            getWeatherUseCase(GetWeatherParams(isNetworkConnected, cityName))
                 .doOnSubscribe {
                     showLoading(true)
                 }
@@ -32,23 +31,4 @@ class MainViewModel(
                 })
         )
     }
-
-    fun getWeatherFromLocal() {
-        disposables.add(
-            getLocalWeatherUseCase()
-                .doOnSubscribe { showLoading(true) }
-                .doFinally { showLoading(false) }
-                .subscribe({
-                    _weatherResponse.value = WeatherResponseMapper().map(it)
-                }, {
-                    showMessage(it.message!!)
-                })
-        )
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        disposables.clear()
-    }
-
 }

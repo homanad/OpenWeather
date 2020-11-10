@@ -7,25 +7,15 @@ import com.hmmanit.android.data.datasource.RemoteWeatherDataSourceImpl
 import com.hmmanit.android.data.db.WeatherDatabase
 import com.hmmanit.android.data.repository.WeatherRepositoryImpl
 import com.hmmanit.android.domain.repository.WeatherRepository
-import com.hmmanit.android.domain.usecase.GetLocalWeatherUseCase
-import com.hmmanit.android.domain.usecase.GetRemoteWeatherUseCase
+import com.hmmanit.android.domain.usecase.GetWeatherUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 object Injector {
 
     @Synchronized
-    fun getGetRemoteWeatherUseCase(context: Context): GetRemoteWeatherUseCase {
-        return GetRemoteWeatherUseCase(
-            getWeatherRepository(context),
-            AndroidSchedulers.mainThread(),
-            Schedulers.io()
-        )
-    }
-
-    @Synchronized
-    fun getGetLocalWeatherUseCase(context: Context): GetLocalWeatherUseCase {
-        return GetLocalWeatherUseCase(
+    fun getGetWeatherUseCase(context: Context): GetWeatherUseCase {
+        return GetWeatherUseCase(
             getWeatherRepository(context),
             AndroidSchedulers.mainThread(),
             Schedulers.io()
