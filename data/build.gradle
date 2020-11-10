@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion compileSdk
@@ -48,4 +49,5 @@ dependencies {
     implementation rxJava2
     implementation rxAndroid2
     implementation room
+    kapt roomCompiler
 }

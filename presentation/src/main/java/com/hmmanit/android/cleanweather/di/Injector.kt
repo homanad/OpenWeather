@@ -42,9 +42,7 @@ object Injector {
 
     @Synchronized
     fun getLocalWeatherDataSource(context: Context): LocalWeatherDataSourceImpl {
-        return LocalWeatherDataSourceImpl(
-            WeatherDatabase.getInstance(context)
-        )
+        return LocalWeatherDataSourceImpl(WeatherDatabase.getInstance(context))
     }
 
     @Synchronized
