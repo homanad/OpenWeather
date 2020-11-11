@@ -1,7 +1,6 @@
 package com.hmmanit.android.cleanweather.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         ConnectionManager.checkNetworkConnection(this)
         button.setOnClickListener {
-            viewModel.getWeather(ConnectionManager.isConnected, "Ho Chi Minh City")
+            viewModel.getWeather("Ho Chi Minh City")
         }
     }
 

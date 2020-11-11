@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.hmmanit.android.cleanweather.common.BaseViewModel
 import com.hmmanit.android.cleanweather.mapper.WeatherResponseMapper
 import com.hmmanit.android.cleanweather.model.WeatherResponse
-import com.hmmanit.android.domain.usecase.GetWeatherParams
 import com.hmmanit.android.domain.usecase.GetWeatherUseCase
 
 class MainViewModel(
@@ -15,9 +14,9 @@ class MainViewModel(
     private val _weatherResponse = MutableLiveData<WeatherResponse>()
     val weatherResponse: LiveData<WeatherResponse> = _weatherResponse
 
-    fun getWeather(isNetworkConnected: Boolean, cityName: String) {
+    fun getWeather(cityName: String) {
         disposables.add(
-            getWeatherUseCase(GetWeatherParams(isNetworkConnected, cityName))
+            getWeatherUseCase(cityName)
                 .doOnSubscribe {
                     showLoading(true)
                 }

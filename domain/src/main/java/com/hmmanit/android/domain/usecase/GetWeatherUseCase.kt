@@ -11,15 +11,10 @@ class GetWeatherUseCase(
     private val weatherRepository: WeatherRepository,
     uiThread: Scheduler,
     executorThread: Scheduler
-) : SingleUseCaseWithParam<WeatherResponseEntity, GetWeatherParams>(uiThread, executorThread) {
+) : SingleUseCaseWithParam<WeatherResponseEntity, String>(uiThread, executorThread) {
 
-    override fun create(params: GetWeatherParams): Single<WeatherResponseEntity> {
-        return weatherRepository.getWeather(params.isNetworkConnected, params.cityName)
+    override fun create(param: String): Single<WeatherResponseEntity> {
+        return weatherRepository.getWeather(param)
             .timeout(2, TimeUnit.SECONDS)
     }
 }
-
-data class GetWeatherParams(
-    var isNetworkConnected: Boolean = false,
-    var cityName: String = ""
-)

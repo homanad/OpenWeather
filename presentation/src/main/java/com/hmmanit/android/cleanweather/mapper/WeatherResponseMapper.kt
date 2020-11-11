@@ -5,9 +5,8 @@ import com.hmmanit.android.domain.entity.WeatherResponseEntity
 
 class WeatherResponseMapper : Mapper<WeatherResponseEntity, WeatherResponse> {
     override fun map(from: WeatherResponseEntity): WeatherResponse {
-        val weatherList = from.weather.map {
+        return WeatherResponse(from.weather.map {
             WeatherMapper().map(it)
-        }
-        return WeatherResponse(weatherList)
+        })
     }
 }
