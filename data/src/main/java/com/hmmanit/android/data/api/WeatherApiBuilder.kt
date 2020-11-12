@@ -9,7 +9,7 @@ class WeatherApiBuilder {
         private val apiInterface: WeatherAPI? = null
         private const val BASE_URL = "https://api.openweathermap.org"
 
-        fun getWebService(): WeatherAPI {
+        fun getWeatherService(): WeatherAPI {
             if (apiInterface != null) {
                 return apiInterface
             }

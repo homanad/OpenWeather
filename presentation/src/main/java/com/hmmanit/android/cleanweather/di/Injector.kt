@@ -26,7 +26,7 @@ object Injector {
     fun getWeatherRepository(context: Context): WeatherRepository {
         return WeatherRepositoryImpl(
             getLocalWeatherDataSource(context),
-            getRemoteWeatherDataSource()
+            remoteWeatherDataSource
         )
     }
 
@@ -35,8 +35,12 @@ object Injector {
         return LocalWeatherDataSourceImpl(WeatherDatabase.getInstance(context))
     }
 
-    @Synchronized
-    fun getRemoteWeatherDataSource(): RemoteWeatherDataSourceImpl {
-        return RemoteWeatherDataSourceImpl(WeatherApiBuilder.getWebService())
+    private val remoteWeatherDataSource by lazy {
+        RemoteWeatherDataSourceImpl(WeatherApiBuilder.getWeatherService())
     }
+
+//    @Synchronized
+//    fun getRemoteWeatherDataSource(): RemoteWeatherDataSourceImpl {
+//        return RemoteWeatherDataSourceImpl(WeatherApiBuilder.getWebService())
+//    }
 }

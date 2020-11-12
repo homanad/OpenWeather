@@ -14,7 +14,13 @@ class LocalWeatherDataSourceImpl(
     private val dao = database.getWeatherDao()
 
     override fun getWeather(): Single<WeatherResponseEntity> {
-        return Single.just(WeatherResponseDataMapper().map(WeatherResponseData(dao.getWeather())))
+        return Single.just(
+            WeatherResponseDataMapper().map(
+                WeatherResponseData(
+                    dao.getWeather().toMutableList()
+                )
+            )
+        )
     }
 
     override fun saveWeather(weatherResponseEntity: WeatherResponseEntity) {

@@ -15,6 +15,6 @@ class GetWeatherUseCase(
 
     override fun create(param: String): Single<WeatherResponseEntity> {
         return weatherRepository.getWeather(param)
-            .timeout(2, TimeUnit.SECONDS)
+            .timeout(5, TimeUnit.SECONDS)
     }
 }

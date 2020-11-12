@@ -7,6 +7,6 @@ class WeatherResponseDataMapper : Mapper<WeatherResponseData, WeatherResponseEnt
     override fun map(from: WeatherResponseData): WeatherResponseEntity {
         return WeatherResponseEntity(from.weather.map {
             WeatherDataMapper().map(it)
-        })
+        }.toMutableList())
     }
 }
