@@ -1,5 +1,6 @@
 package com.hmmanit.android.data.datasource
 
+import android.util.Log
 import com.hmmanit.android.data.data.WeatherResponseData
 import com.hmmanit.android.data.db.WeatherDatabase
 import com.hmmanit.android.data.mapper.WeatherEntityMapper

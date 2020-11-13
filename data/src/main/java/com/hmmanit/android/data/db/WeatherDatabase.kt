@@ -22,7 +22,7 @@ abstract class WeatherDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         WeatherDatabase::class.java,
-                        WeatherDatabase.javaClass.name
+                        WeatherDatabase::class.java.name
                     ).allowMainThreadQueries().build()
                 }
                 return instance
