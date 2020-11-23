@@ -3,7 +3,7 @@ package com.hmmanit.android.cleanweather.ui.vm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hmmanit.android.cleanweather.common.BaseViewModel
-import com.hmmanit.android.cleanweather.mapper.WeatherResponseMapper
+import com.hmmanit.android.cleanweather.mapper.toWeatherResponse
 import com.hmmanit.android.cleanweather.model.WeatherResponse
 import com.hmmanit.android.domain.usecase.GetWeatherUseCase
 
@@ -24,7 +24,7 @@ class MainViewModel(
                     showLoading(false)
                 }
                 .subscribe({
-                    _weatherResponse.value = WeatherResponseMapper().map(it)
+                    _weatherResponse.value = it.toWeatherResponse()
                 }, {
                     showMessage(it.message!!)
                 })

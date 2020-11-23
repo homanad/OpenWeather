@@ -1,10 +1,9 @@
 package com.hmmanit.android.data.datasource
 
-import android.util.Log
 import com.hmmanit.android.data.data.WeatherResponseData
 import com.hmmanit.android.data.db.WeatherDatabase
-import com.hmmanit.android.data.mapper.WeatherEntityMapper
-import com.hmmanit.android.data.mapper.WeatherResponseDataMapper
+import com.hmmanit.android.data.mapper.toWeatherData
+import com.hmmanit.android.data.mapper.toWeatherResponseEntity
 import com.hmmanit.android.domain.entity.WeatherResponseEntity
 import io.reactivex.Single
 
@@ -16,18 +15,14 @@ class LocalWeatherDataSourceImpl(
 
     override fun getWeather(): Single<WeatherResponseEntity> {
         return Single.just(
-            WeatherResponseDataMapper().map(
-                WeatherResponseData(
-                    dao.getWeather().toMutableList()
-                )
-            )
+            WeatherResponseData(dao.getWeather().toMutableList()).toWeatherResponseEntity()
         )
     }
 
     override fun saveWeather(weatherResponseEntity: WeatherResponseEntity) {
         dao.clearAllData()
         weatherResponseEntity.weather.map {
-            dao.insertWeather(WeatherEntityMapper().map(it))
+            dao.insertWeather(it.toWeatherData())
         }
     }
 }

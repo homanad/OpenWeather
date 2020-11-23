@@ -15,13 +15,11 @@ import java.util.concurrent.TimeoutException
 
 class GetWeatherUseCaseTest {
 
-    private val weatherResponseEntity = WeatherResponseEntity()
+    private val weatherResponseEntity =
+        WeatherResponseEntity(listOf(WeatherEntity(123, "test", "test", "test")))
 
     @Before
     fun init() {
-        weatherResponseEntity.weather.add(
-            WeatherEntity(123, "test", "test", "test")
-        )
     }
 
     @Test

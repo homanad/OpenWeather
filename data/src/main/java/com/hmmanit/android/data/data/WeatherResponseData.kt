@@ -1,5 +1,5 @@
 package com.hmmanit.android.data.data
 
 data class WeatherResponseData(
-    var weather: MutableList<WeatherData> = mutableListOf()
+    var weather: List<WeatherData> = listOf()
 )

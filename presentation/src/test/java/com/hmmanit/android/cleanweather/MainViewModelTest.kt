@@ -2,7 +2,7 @@ package com.hmmanit.android.cleanweather
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.hmmanit.android.cleanweather.mapper.WeatherResponseMapper
+import com.hmmanit.android.cleanweather.mapper.toWeatherResponse
 import com.hmmanit.android.cleanweather.model.WeatherResponse
 import com.hmmanit.android.cleanweather.ui.vm.MainViewModel
 import com.hmmanit.android.domain.entity.WeatherEntity
@@ -21,17 +21,14 @@ class MainViewModelTest {
     @Rule
     val rule = InstantTaskExecutorRule()
 
-    private val weatherResponseEntity = WeatherResponseEntity()
-    private val weatherResponseEntity2 = WeatherResponseEntity()
+    private val weatherResponseEntity =
+        WeatherResponseEntity(listOf(WeatherEntity(123, "test", "test", "test")))
+    private val weatherResponseEntity2 =
+        WeatherResponseEntity(listOf(WeatherEntity(1234, "", "", "")))
 
     @Before
     fun init() {
-        weatherResponseEntity.weather.add(
-            WeatherEntity(123, "test", "test", "test")
-        )
-        weatherResponseEntity2.weather.add(
-            WeatherEntity(1234, "", "", "")
-        )
+
     }
 
     @Test
@@ -48,7 +45,7 @@ class MainViewModelTest {
         val observer = mock<Observer<WeatherResponse>>()
         viewModel.weatherResponse.observeForever(observer)
         verify(observer).onChanged(
-            WeatherResponseMapper().map(weatherResponseEntity)
+            weatherResponseEntity.toWeatherResponse()
         )
     }
 
